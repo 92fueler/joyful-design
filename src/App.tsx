@@ -10,7 +10,7 @@ const App: React.FC = () => {
       <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>
         primary, large-size button
       </Button>
-      <Button btnType={ButtonType.Link} href="www.google.com">
+      <Button btnType={ButtonType.Link} href="http://www.google.com">
         link button, linking to Google.com
       </Button>
     </>
