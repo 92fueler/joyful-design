@@ -13,7 +13,6 @@ export interface MenuProps {
   onSelect?: SelectCallback // select and trigger callback func
   defaultOpenSubMenus?: string[] // only works on the vertical mode
 }
-
 interface IMenuContext {
   index: string
   onSelect?: SelectCallback
@@ -54,9 +53,12 @@ export const Menu: FC<MenuProps> = (props) => {
     defaultOpenSubMenus,
   }
 
+  // only render legit MenuItem component
   const renderChildren = () => {
     return React.Children.map(children, (child, index) => {
-      const childElement = child as React.FunctionComponentElement<MenuItemProps>
+      const childElement = child as React.FunctionComponentElement<
+        MenuItemProps
+      >
       const { displayName } = childElement.type
       if (displayName === 'MenuItem' || displayName === 'SubMenu') {
         return React.cloneElement(childElement, {
@@ -64,13 +66,14 @@ export const Menu: FC<MenuProps> = (props) => {
         })
       } else {
         console.error(
-          'Warning: Menu has a child which is not a MenuItem component'
+          'Warning: Menu Component only renders legit MenuItem Component'
         )
       }
     })
   }
 
   return (
+    // data-testid is required by react-testing-library for testing Menu component
     <ul className={classes} style={style} data-testid="test-menu">
       <MenuContext.Provider value={passedContext}>
         {renderChildren()}

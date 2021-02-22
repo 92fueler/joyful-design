@@ -11,7 +11,7 @@ const App: React.FC = () => {
         <h1>Welcome to Joyful Design World !</h1>
         <div>
           <h2>Menu components</h2>
-          <Menu defaultIndex={'0'}>
+          <Menu mode="vertical">
             <MenuItem>cool link</MenuItem>
             <MenuItem>cool link 1</MenuItem>
             <MenuItem>cool link 2</MenuItem>

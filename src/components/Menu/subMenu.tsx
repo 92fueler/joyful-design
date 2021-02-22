@@ -18,12 +18,13 @@ const SubMenu: React.FC<SubMenuProps> = ({
   className,
 }) => {
   const context = useContext(MenuContext)
+  // type assertion string[]
   const openedSubMenus = context.defaultOpenSubMenus as Array<string>
-  const isOpend =
+  const isOpened =
     index && context.mode === 'vertical'
       ? openedSubMenus.includes(index)
       : false
-  const [menuOpen, setOpen] = useState(isOpend)
+  const [menuOpen, setOpen] = useState(isOpened)
   const classes = classNames('menu-item submenu-item', className, {
     'is-active': context.index === index,
     'is-opened': menuOpen,
@@ -33,6 +34,8 @@ const SubMenu: React.FC<SubMenuProps> = ({
     e.preventDefault()
     setOpen(!menuOpen)
   }
+
+  // create a timer to control toggle
   let timer: any
   const handleMouse = (e: React.MouseEvent, toggle: boolean) => {
     clearTimeout(timer)
@@ -41,12 +44,14 @@ const SubMenu: React.FC<SubMenuProps> = ({
       setOpen(toggle)
     }, 300)
   }
+
   const clickEvents =
     context.mode === 'vertical'
       ? {
           onClick: handleClick,
         }
       : {}
+
   const hoverEvents =
     context.mode !== 'vertical'
       ? {
@@ -58,6 +63,7 @@ const SubMenu: React.FC<SubMenuProps> = ({
           },
         }
       : {}
+
   const renderChildren = () => {
     const subMenuClasses = classNames('joyful-submenu', {
       'menu-opened': menuOpen,
