@@ -1,5 +1,5 @@
 import React from 'react'
-import Button, { ButtonType, ButtonSize } from './components/Button/button'
+import Button from './components/Button/button'
 import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuItem'
 import SubMenu from './components/Menu/subMenu'
@@ -11,7 +11,7 @@ const App: React.FC = () => {
         <h1>Welcome to Joyful Design World !</h1>
         <div>
           <h2>Menu components</h2>
-          <Menu mode="vertical">
+          <Menu>
             <MenuItem>cool link</MenuItem>
             <MenuItem>cool link 1</MenuItem>
             <MenuItem>cool link 2</MenuItem>
@@ -24,24 +24,20 @@ const App: React.FC = () => {
         </div>
         <div>
           <h2>Button components</h2>
-          <Button btnType={ButtonType.Default}>default button</Button>
-          <Button btnType={ButtonType.Danger} size={ButtonSize.Small}>
+          <Button btnType="default">default button</Button>
+          <Button btnType="danger" size="sm">
             danger, small-size button
           </Button>
-          <Button disabled btnType={ButtonType.Primary}>
+          <Button disabled btnType="primary">
             disabled primary button
           </Button>
-          <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>
+          <Button btnType="primary" size="lg">
             primary, large-size button
           </Button>
-          <Button btnType={ButtonType.Link} href="http://www.google.com">
+          <Button btnType="link" href="http://www.google.com">
             link button, linking to Google.com
           </Button>
-          <Button
-            btnType={ButtonType.Link}
-            disabled
-            href="http://www.google.com"
-          >
+          <Button btnType="link" disabled href="http://www.google.com">
             link button, linking to Google.com
           </Button>
         </div>
