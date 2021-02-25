@@ -11,7 +11,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
 
   const [inputValue, setInputValue] = useState(value)
   const [suggestions, setSuggestions] = useState<string[]>([])
-  console.log(suggestions)
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim()
     setInputValue(value)
@@ -22,9 +22,33 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
       setSuggestions([])
     }
   }
+
+  const handleSelect = (item: string) => {
+    setInputValue(item)
+    setSuggestions([])
+    if (onSelect) {
+      onSelect(item)
+    }
+  }
+
+  const generateDropdown = () => {
+    return (
+      <ul>
+        {suggestions.map((item, index) => {
+          return (
+            <li key={index} onClick={() => handleSelect(item)}>
+              {item}
+            </li>
+          )
+        })}
+      </ul>
+    )
+  }
+
   return (
     <div className="joyful-auto-complete">
       <Input value={inputValue} onChange={handleChange} {...restProps} />
+      {suggestions.length > 0 && generateDropdown()}
     </div>
   )
 }

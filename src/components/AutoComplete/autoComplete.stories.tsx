@@ -23,7 +23,12 @@ const SimpleComplete = () => {
     return lakers.filter((name) => name.includes(query))
   }
 
-  return <AutoComplete fetchSuggestions={handleFetch} />
+  return (
+    <AutoComplete
+      fetchSuggestions={handleFetch}
+      onSelect={action('selected')}
+    />
+  )
 }
 
 storiesOf('AutoComplete component', module).add('AutoComplete', SimpleComplete)
