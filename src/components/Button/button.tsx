@@ -6,8 +6,11 @@ export type ButtonType = 'primary' | 'default' | 'danger' | 'link'
 
 interface BaseButtonProps {
   className?: string
+  /**set disabled Button */
   disabled?: boolean
+  /**set Button size */
   size?: ButtonSize
+  /** set Button type */
   btnType?: ButtonType
   children: React.ReactNode
   href?: string
@@ -17,7 +20,17 @@ type NativeButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLElement>
 type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>
 
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
-const Button: FC<ButtonProps> = (props) => {
+
+/**
+ * Button: To trigger an operation (or a series of operations.)
+ * ### How to import
+ *
+ * ~~~js
+ * import { Button } from 'joyful-design'
+ * ~~~
+ *
+ */
+export const Button: FC<ButtonProps> = (props) => {
   const {
     btnType,
     className,
@@ -34,6 +47,7 @@ const Button: FC<ButtonProps> = (props) => {
     disabled: btnType === 'link' && disabled,
   })
 
+  // Link Button
   if (btnType === 'link' && href) {
     return (
       <a className={classes} href={href} {...restProps}>
@@ -41,6 +55,7 @@ const Button: FC<ButtonProps> = (props) => {
       </a>
     )
   } else {
+    // regular Button
     return (
       <button className={classes} disabled={disabled} {...restProps}>
         {children}
