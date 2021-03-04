@@ -23,7 +23,7 @@ export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
 
 /**
  * Button: To trigger an operation (or a series of operations.)
- * ### How to import
+ * How to import
  *
  * ~~~js
  * import { Button } from 'joyful-design'
