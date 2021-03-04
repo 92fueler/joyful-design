@@ -5,6 +5,11 @@ import {
   FontAwesomeIconProps,
 } from '@fortawesome/react-fontawesome'
 
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+library.add(fas)
+
 export type ThemeProps =
   | 'primary'
   | 'secondary'
@@ -20,7 +25,7 @@ export interface IconProps extends FontAwesomeIconProps {
 }
 
 const Icon: React.FC<IconProps> = (props) => {
-  // icon-primary
+  // usage example: icon-primary
   const { className, theme, ...restProps } = props
   const classes = classNames('joyful-icon', className, {
     [`icon-${theme}`]: theme,
