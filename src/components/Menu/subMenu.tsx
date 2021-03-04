@@ -7,7 +7,9 @@ import Transition from '../Transition/transition'
 
 export interface SubMenuProps {
   index?: string
+  /** dropdown menu title */
   title: string
+  /** dropdown menu classNames */
   className?: string
 }
 

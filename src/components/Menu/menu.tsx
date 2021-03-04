@@ -6,12 +6,16 @@ type MenuMode = 'horizontal' | 'vertical'
 type SelectCallback = (selectedIndex: string) => void
 
 export interface MenuProps {
-  defaultIndex?: string // set up default active item
+  /** default active item index */
+  defaultIndex?: string
   className?: string
-  mode?: MenuMode // menu mode: horizontal (top menu) and vertical (side menu)
+  /** menu mode: horizontal (top menu) and vertical (side menu) */
+  mode?: MenuMode
   style?: CSSProperties
-  onSelect?: SelectCallback // select and trigger callback func
-  defaultOpenSubMenus?: string[] // only works on the vertical mode
+  /** select and trigger callback func */
+  onSelect?: SelectCallback
+  /** only works on the vertical mode */
+  defaultOpenSubMenus?: string[]
 }
 interface IMenuContext {
   index: string
@@ -22,6 +26,16 @@ interface IMenuContext {
 
 export const MenuContext = createContext<IMenuContext>({ index: '0' })
 
+/**
+ *  Menu: To provide navigation for your website or application
+ *
+ * How to import
+ *
+ * ~~~js
+ * import { Menu } from 'joyful-design'
+ * ~~~
+ *
+ */
 export const Menu: FC<MenuProps> = (props) => {
   const {
     className,
