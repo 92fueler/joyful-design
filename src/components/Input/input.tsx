@@ -11,14 +11,29 @@ import Icon from '../Icon/icon'
 type InputSize = 'lg' | 'sm'
 export interface InputProps
   extends Omit<InputHTMLAttributes<HTMLElement>, 'size'> {
+  /** option to disable input */
   disabled?: boolean
+  /** set input size, either lg or sm */
   size?: InputSize
+  /** icon  */
   icon?: IconProp
+  /** prepend */
   prepend?: string | ReactElement
+  /** append */
   append?: string | ReactElement
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void // for Controlled Input
 }
 
+/**
+ * Input: To get the user input
+ * This Input component supports all HTMLInput attributes
+ *
+ * How to import
+ *
+ * ~~~js
+ * import { Input } from 'joyful-design
+ * ~~~
+ */
 export const Input: FC<InputProps> = (props) => {
   const { disabled, size, icon, prepend, append, style, ...restProps } = props
   const cnames = classNames('joyful-input-wrapper', {
