@@ -31,12 +31,12 @@ const customIcons = () => (
   </>
 )
 
-storiesOf('第七章：Icon', module)
-  .add('Icon', defaultIcons)
-  .add('不同主题的 Icon', themeIcons)
-  .add('更多行为的 Icon', customIcons, {
+storiesOf('Icon Component', module)
+  .add('Default Icons', defaultIcons)
+  .add('Icons with different themes', themeIcons)
+  .add('Icons with animations', customIcons, {
     info: {
       text:
-        '更多例子请参见：https://github.com/FortAwesome/react-fontawesome#basic',
+        'For more demos, please go to：https://github.com/FortAwesome/react-fontawesome#basic',
     },
   })

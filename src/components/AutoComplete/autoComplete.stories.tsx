@@ -35,15 +35,14 @@ const simpleComplete = () => {
     <AutoComplete
       fetchSuggestions={handleFetch}
       onSelect={action('selected')}
-      placeholder="输入湖人队球员英文名试试"
+      placeholder="Please enter your favoriate Golden State Warriors player to have a try"
     />
   )
 }
 
 const textComplete = `
   ~~~javascript
-  const lakers = ['bradley', 'pope', 'caruso', 'cook', 'cousins',
-  'james', 'AD', 'green', 'howard', 'kuzma', 'McGee', 'rando']
+  const lakers = ['Stephen Curry', 'Klay Thompson', 'Kelly Oubre', 'Kevon Looney', 'Damion Lee', Draymond Green', 'Kent Bazemore', 'Nico Mannion', 'Eric Paschall']
   const handleFetch = (query: string) => {
     return lakers.filter(name => name.includes(query)).map(name => ({value: name}))
   }
@@ -51,7 +50,7 @@ const textComplete = `
     <AutoComplete 
       fetchSuggestions={handleFetch}
       onSelect={action('selected')}
-      placeholder="输入湖人队球员英文名试试"
+      placeholder="Please enter your favoriate Golden State Warriors player to have a try"
     />
   )
   ~~~
@@ -76,8 +75,8 @@ const customComplete = () => {
     const itemWithNumber = item as DataSourceType<LakerPlayerProps>
     return (
       <>
-        <b>名字: {itemWithNumber.value}</b>
-        <span>球衣号码: {itemWithNumber.number}</span>
+        <p>Player Name: {itemWithNumber.value}</p>
+        <span>Jersey Name: {itemWithNumber.number}</span>
       </>
     )
   }
@@ -85,26 +84,26 @@ const customComplete = () => {
     <AutoComplete
       fetchSuggestions={handleFetch}
       onSelect={action('selected')}
-      placeholder="输入湖人队球员英文,自定义下拉模版"
+      placeholder="Enter a Warriors player to try the custome dropdown"
       renderOption={renderOption}
     />
   )
 }
 
 const textCustom = `
-### 示例代码
+### Demo
 ~~~javascript
 const lakersWithNumber = [
-  {value: 'bradley', number: 11},
-  {value: 'pope', number: 1},
-  {value: 'caruso', number: 4},
-  {value: 'cook', number: 2},
-  {value: 'cousins', number: 15},
-  {value: 'james', number: 23},
-  {value: 'AD', number: 3},
-  {value: 'green', number: 14},
-  {value: 'howard', number: 39},
-  {value: 'kuzma', number: 0},
+  {value: 'curry', number: 30},
+  {value: 'green', number: 23},
+  {value: 'bazemore', number: 26},
+  {value: 'looney', number: 5},
+  {value: 'mannion', number: 2},
+  {value: 'mulder', number: 15},
+  {value: 'oubre', number: 12},
+  {value: 'paschall', number: 7},
+  {value: 'payton', number: 0},
+  {value: 'thompson', number: 11},
 ] 
 const handleFetch = (query: string) => {
   return lakersWithNumber.filter(player => player.value.includes(query))
@@ -113,8 +112,8 @@ const renderOption = (item: DataSourceType) => {
   const itemWithNumber = item as DataSourceType<LakerPlayerProps>
   return (
     <>
-      <b>名字: {itemWithNumber.value}</b>
-      <span>球衣号码: {itemWithNumber.number}</span>
+      <b>Player Name: {itemWithNumber.value}</b>
+      <span>Jersey Number: {itemWithNumber.number}</span>
     </>
   )
 }
@@ -122,7 +121,7 @@ return (
   <AutoComplete 
     fetchSuggestions={handleFetch}
     onSelect={action('selected')}
-    placeholder="输入湖人队球员英文,自定义下拉模版"
+    placeholder="Enter a Warriors player to try the custome dropdown"
     renderOption={renderOption}
   />
 )
@@ -143,7 +142,7 @@ const ajaxComplete = () => {
     const itemWithGithub = item as DataSourceType<GithubUserProps>
     return (
       <>
-        <b>Name: {itemWithGithub.value}</b>
+        <p>Name: {itemWithGithub.value}</p>
         <span>url: {itemWithGithub.url}</span>
       </>
     )
@@ -151,7 +150,7 @@ const ajaxComplete = () => {
   return (
     <AutoComplete
       fetchSuggestions={handleFetch}
-      placeholder="输入 Github 用户名试试"
+      placeholder="Please enter your GitHub Username to have a try"
       onSelect={action('selected')}
       renderOption={renderOption}
     />
@@ -159,7 +158,7 @@ const ajaxComplete = () => {
 }
 
 const textAjax = `
-### 示例代码
+### Demo
 ~~~javascript
 const handleFetch = (query: string) => {
   return fetch('https://api.github.com/search/users?q='+ query)
@@ -173,7 +172,7 @@ const renderOption = (item: DataSourceType) => {
   const itemWithGithub = item as DataSourceType<GithubUserProps>
   return (
     <>
-      <b>Name: {itemWithGithub.value}</b>
+      <p>Name: {itemWithGithub.value}</p>
       <span>url: {itemWithGithub.url}</span>
     </>
   )
@@ -181,20 +180,20 @@ const renderOption = (item: DataSourceType) => {
 return (
   <AutoComplete 
     fetchSuggestions={handleFetch}
-    placeholder="输入 Github 用户名试试"
+    placeholder="Please enter your Github Username to have a try"
     onSelect={action('selected')}
     renderOption={renderOption}
   />
 )
 ~~~
 `
-storiesOf('第九章：AutoComplete', module)
+storiesOf('AutoComple', module)
   .add('AutoComplete', simpleComplete, {
     info: { source: false, text: textComplete },
   })
-  .add('自定义下拉选项', customComplete, {
+  .add('To create a Custom Suggestion Dropdown', customComplete, {
     info: { source: false, text: textCustom },
   })
-  .add('异步请求Github用户名', ajaxComplete, {
+  .add('Send Asynchronous requests to GitHub', ajaxComplete, {
     info: { source: false, text: textAjax },
   })

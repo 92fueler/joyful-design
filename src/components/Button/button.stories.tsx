@@ -27,4 +27,4 @@ const buttonWithType = () => (
 storiesOf('Button Component', module)
   .add('Button', defaultButton)
   .add('different sizes of Button', buttonWithSize)
-  .add('different types ofButton', buttonWithType)
+  .add('different types of Button', buttonWithType)
